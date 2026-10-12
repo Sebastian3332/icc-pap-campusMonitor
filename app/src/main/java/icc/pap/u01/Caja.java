@@ -1,5 +1,6 @@
 package icc.pap.u01;
 
+import com.google.common.base.Function;
 
 // Clase generica
 public class Caja<T> { 
@@ -17,4 +18,12 @@ public class Caja<T> {
     public T obtener() {
         return valor;
     }
+
+    // Metodo generico
+
+    public <R> R mapear(Function<T, R> operacion) {
+        R resultado = operacion.apply(valor);
+        return resultado;
+    }
+
 }
