@@ -1,5 +1,7 @@
 package models;
 
+import com.google.common.base.Function;
+
 public class Lectura<T> {
     private String idSensor;
     private T valor;
@@ -20,6 +22,22 @@ public class Lectura<T> {
     }
     public String getUnidad() {
         return unidad;
+    }
+
+    
+    
+    public <R> Lectura<R> transformar(Function<T, R> conversor, String nuevaUnidad) {
+        if (conversor == null) {
+            throw new IllegalArgumentException("El conversor no puede ser nulo");
+        }
+
+        R nuevoValor = conversor.apply(this.valor);
+
+        if (nuevoValor == null){
+            throw new IllegalArgumentException("El resultado de la transformación no puede ser nulo");
+        }
+        
+        return new Lectura<R>(this.idSensor, nuevoValor, nuevaUnidad);
     }
 
     
