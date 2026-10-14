@@ -33,22 +33,18 @@ public class App {
         Lectura<Integer> lectura1 = new Lectura<>("S02", 18, "personas");
 
         // Convierte la temperatura a Fahrenheit (F = C * 9.0 / 5.0 + 32) y obtén
-        // Lectura<Double> con unidad °F
         Lectura<Double> temperaturaFahrenheit = temperatura.transformar(c -> c * 9.0 / 5.0 + 32, "°F");
 
-        // Transforma el valor de ocupación en el texto "18 personas"; obtén
-        // Lectura<String> con unidad "texto", sin cast
+
+        // Lectura<String>
         Lectura<String> ocupacionTexto = lectura1.transformar(v -> v + " personas", "texto");
 
-        // Muestra los originales y los resultados. Verifica que los identificadores se
-        // conservan y los originales no cambiaron
-        System.out.println("Original: " + temperatura.getIdSensor() + " | " + temperatura.getValor() + " "
-                + temperatura.getUnidad());
-        System.out.println("Transformada: " + temperaturaFahrenheit.getIdSensor() + " | "
-                + temperaturaFahrenheit.getValor() + " " + temperaturaFahrenheit.getUnidad());
+  
+        System.out.println("Original: " + temperatura.getIdSensor() + " | " + temperatura.getValor() + " " + temperatura.getUnidad());
+        System.out.println("Transformada: " + temperaturaFahrenheit.getIdSensor() + " | " + temperaturaFahrenheit.getValor() + " " 
+                + temperaturaFahrenheit.getUnidad());
 
-        System.out.println(
-                "Original: " + lectura1.getIdSensor() + " | " + lectura1.getValor() + " " + lectura1.getUnidad());
+        System.out.println("Original: " + lectura1.getIdSensor() + " | " + lectura1.getValor() + " " + lectura1.getUnidad());
         System.out.println("Transformada: " + ocupacionTexto.getIdSensor() + " | " + ocupacionTexto.getValor()
                 + " | unidad: " + ocupacionTexto.getUnidad());
 
@@ -67,4 +63,9 @@ public class App {
             System.out.println("Excepción capturada (resultado nulo): " + e.getMessage());
         }
     }
+
+    // Double --> Reporte
+
+    Lectura<Double> temperatura2 = new Lectura<>("S01", 22.5, "°C");
+    Lectura<Double> reporteAux = new Lectura<>("S01", 22.5, "°C");
 }
